@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: dscatalog
+
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  datasource:
+    # As variáveis entre ${} serão preenchidas pelo servidor/ambient
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: false
+        # Otimização: evita queries extras para carregar coleções
+        default_batch_fetch_size: 20
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    # Segurança extra: impede migrações se o checksum falhar
+    validate-on-migrate: true
+
+api:
+  security:
+    token:
+      # Esta chave DEVE ser trocada no servidor e ter 32+ caracteres
+      secret: ${JWT_SECRET}
+      expiration: ${JWT_EXPIRATION:900000} # 15 min padrão
+      refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000} # 7 dias padrão
+
+# Configuração de logs para monitoramento
+logging:
+  level:
+    root: INFO
+    com.github.freddy: INFO
+    org.springframework.web: INFO
