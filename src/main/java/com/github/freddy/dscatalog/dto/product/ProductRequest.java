@@ -18,7 +18,7 @@ public record ProductRequest(
 
         String description,
 
-        @URL(message = "Url invaida")
+        @URL(message = "url invaida")
         String imgUrl,
 
         @NotEmpty(message = "O produto deve ter pelo menos uma categoria")
