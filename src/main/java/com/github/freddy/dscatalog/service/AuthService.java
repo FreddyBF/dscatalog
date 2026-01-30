@@ -2,7 +2,8 @@ package com.github.freddy.dscatalog.service;
 
 
 import com.github.freddy.dscatalog.auth.JwtService;
-import com.github.freddy.dscatalog.config.security.UserDetailsImpl;
+import com.github.freddy.dscatalog.security.UserDetailsImpl;
+import com.github.freddy.dscatalog.security.CustomUserDetailsService;
 import com.github.freddy.dscatalog.dto.user.LoginRequest;
 import com.github.freddy.dscatalog.dto.user.LoginResponse;
 import com.github.freddy.dscatalog.dto.user.UserResponse;
@@ -19,7 +20,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -52,7 +52,6 @@ public class AuthService {
         Role role = roleRepository.findByAuthority(RoleAuthority.ROLE_OPERATOR)
                 .orElseThrow(() -> new ResourceNotFoundException("Role não encontrada"));
         userEntity.getRoles().add(role);
-
         return new UserResponse(userRepository.save(userEntity));
     }
 

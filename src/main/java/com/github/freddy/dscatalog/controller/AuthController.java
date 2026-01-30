@@ -1,12 +1,11 @@
 package com.github.freddy.dscatalog.controller;
 
 
-import com.github.freddy.dto.user.LoginRequest;
-import com.github.freddy.dto.user.LoginResponse;
-import com.github.freddy.dto.user.UserRequest;
-import com.github.freddy.dto.user.UserResponse;
-import com.github.freddy.repository.UserRepository;
-import com.github.freddy.service.AuthService;
+import com.github.freddy.dscatalog.dto.user.LoginRequest;
+import com.github.freddy.dscatalog.dto.user.LoginResponse;
+import com.github.freddy.dscatalog.dto.user.UserRequest;
+import com.github.freddy.dscatalog.dto.user.UserResponse;
+import com.github.freddy.dscatalog.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
